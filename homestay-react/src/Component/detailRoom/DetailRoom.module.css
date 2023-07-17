@@ -1,0 +1,64 @@
+.content {
+  min-height: 500px;
+  margin-top: 150px;
+}
+.title_infor {
+  font-size: 16px;
+  font-weight: 600;
+}
+.color_e1 {
+  color: #555;
+  font-size: 14px;
+}
+/* .description {
+  margin-top: 50px;
+} */
+.facility_grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5px;
+}
+.name_facility {
+  font-size: 14px;
+}
+.booking_now {
+  background-color: #b75e05;
+  font-size: 20px;
+  border-radius: 5px;
+  width: 80%;
+  padding: 6px 15px 10px;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border: 2px solid #b75e05;
+  outline: none;
+}
+.booking_now:hover {
+  background-color: transparent;
+  color: #b75e05;
+}
+.card {
+  opacity: 0.5;
+  transform: scale(0.9);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  background-color: #333;
+  opacity: 0.5; /* Điều chỉnh độ mờ tùy ý */
+  transition: opacity 0.3s ease;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  object-fit: contain;
+}
+.slide_active {
+  opacity: 1;
+  transform: scale(1);
+  padding: 10px;
+}

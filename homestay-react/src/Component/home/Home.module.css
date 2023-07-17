@@ -1,0 +1,75 @@
+.slide {
+  filter: brightness(30%);
+}
+.swiper {
+  width: 100%;
+  height: 75%;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  background-color: #333;
+  opacity: 0.5; /* Điều chỉnh độ mờ tùy ý */
+  transition: opacity 0.3s ease;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  object-fit: contain;
+}
+.more_than_homestay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.booking_now {
+  background-color: #b75e05;
+  font-size: 20px;
+  border-radius: 20px;
+  padding: 6px 15px 10px;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  border: 2px solid #b75e05;
+}
+.booking_now:hover {
+  border: 2px solid #b75e05;
+  background-color: #fff;
+  color: #b75e05;
+}
+.menu_homestay {
+  margin: 50px 0;
+}
+.card {
+  opacity: 0.5;
+  transform: scale(0.9);
+  cursor: pointer;
+}
+.slide_active {
+  opacity: 1;
+  transform: scale(1);
+  padding: 10px;
+}
+.title_card {
+  border-bottom: 1px solid #e2e2e2;
+}
+.nameRoom {
+  color: #b75e05;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 10px 0;
+}
+.priceRoom,
+.addressRoom {
+  color: #555;
+}
+.feedback {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://homestaychat.com/wp-content/uploads/sites/88/2022/10/97A9609-scaled.jpg");
+  height: 500px;
+  background-size: cover;
+}

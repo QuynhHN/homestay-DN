@@ -1,0 +1,21 @@
+.navbar {
+  height: 90px;
+  background-color: transparent;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  margin-bottom: 90px;
+}
+.menu_navbar {
+  font-size: 16px;
+  font-weight: 600;
+}
+.navigator {
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+}
+.navigator:hover {
+  color: brown;
+}
