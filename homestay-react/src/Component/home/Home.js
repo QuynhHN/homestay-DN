@@ -94,7 +94,7 @@ export default function Home() {
         </div>
         <div className={styles.more_than_homestay}>
           <h2 style={{ fontWeight: 700, color: "#fff", letterSpacing: 2 }}>
-            HOMESTAY
+            HOMESTAY CHẤT
           </h2>
           <p style={{ color: "#fff", letterSpacing: 1 }}>
             more than a homestay

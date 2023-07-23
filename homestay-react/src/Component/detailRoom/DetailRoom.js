@@ -20,7 +20,6 @@ export default function DetailRoom() {
     className: "center",
     centerMode: true,
     infinite: true,
-    arrows: false,
     centerPadding: "60px",
     slidesToShow: 5,
     autoplay: true,
@@ -31,7 +30,6 @@ export default function DetailRoom() {
   useEffect(() => {
     const getDetailRoom = async () => {
       const result = await getRoomById(id);
-      console.log(result);
       setRoom(result);
     };
     getDetailRoom();
@@ -59,7 +57,7 @@ export default function DetailRoom() {
               <div className="col-6">
                 <div className="main-img">
                   <img
-                    src={room.imgRooms[currentImg].pathImg}
+                    src={room.imgRooms[currentImg]?.pathImg}
                     className="w-100 p-3"
                     alt=""
                   />
