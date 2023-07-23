@@ -10,7 +10,7 @@ import java.util.Date;
 @Component
 public class JwtProvider {
     private static final Logger logger = LoggerFactory.getLogger(JwtProvider.class);
-    private String jwtSecret = "chinh_fpt";
+    private String jwtSecret = "homestay_dn";
     private long jwtExpiration = 80640000L;
     public String createToken(Authentication authentication) {
         UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
