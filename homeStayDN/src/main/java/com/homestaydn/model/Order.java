@@ -17,18 +17,24 @@ public class Order {
     private LocalDate dateBooking;
     @OneToOne
     private User user;
+    @Column(columnDefinition = "tinyint")
+    private int statusPayment;
+    @Column(columnDefinition = "tinyint")
+    private int statusReceive;
     @OneToOne
     private OrderDetail orderDetail;
 
     public Order() {
     }
 
-    public Order(int id, String codeOrder, BigDecimal totalMoney, LocalDate dateBooking, User user, OrderDetail orderDetail) {
+    public Order(int id, String codeOrder, BigDecimal totalMoney, LocalDate dateBooking, User user, int statusPayment, int statusReceive, OrderDetail orderDetail) {
         this.id = id;
         this.codeOrder = codeOrder;
         this.totalMoney = totalMoney;
         this.dateBooking = dateBooking;
         this.user = user;
+        this.statusPayment = statusPayment;
+        this.statusReceive = statusReceive;
         this.orderDetail = orderDetail;
     }
 
@@ -54,6 +60,22 @@ public class Order {
 
     public void setTotalMoney(BigDecimal totalMoney) {
         this.totalMoney = totalMoney;
+    }
+
+    public int getStatusPayment() {
+        return statusPayment;
+    }
+
+    public void setStatusPayment(int statusPayment) {
+        this.statusPayment = statusPayment;
+    }
+
+    public int getStatusReceive() {
+        return statusReceive;
+    }
+
+    public void setStatusReceive(int statusReceive) {
+        this.statusReceive = statusReceive;
     }
 
     public LocalDate getDateBooking() {

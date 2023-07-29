@@ -4,10 +4,17 @@ import { Link, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import { Tooltip } from "react-tooltip";
 import { useEffect, useState } from "react";
+import { SearchOutlined } from "@ant-design/icons";
+import { getRoomSearching } from "../../../service/homeService";
 export default function Header() {
   const [roles, setRoles] = useState(null);
   const [account, setAccount] = useState(null);
   const navigate = useNavigate();
+  const [roomSearched, setRoomSeached] = useState([]);
+  const [searchAndPage, setSearchAndPage] = useState({
+    search: "",
+    page: 0,
+  });
   useEffect(() => {
     const account = JSON.parse(localStorage.getItem("account"));
     if (account) {
@@ -19,6 +26,22 @@ export default function Header() {
       setRoles(roleArr);
     }
   }, []);
+  useEffect(() => {
+    const fetchApiToGetProducts = async () => {
+      const result = await getRoomSearching(searchAndPage);
+      setRoomSeached(result.content);
+    };
+    fetchApiToGetProducts();
+  }, [searchAndPage]);
+  const handleSearchChange = (e) => {
+    setSearchAndPage((prev) => ({ ...prev, search: e.target.value }));
+  };
+  const handleBlurInputSearch = () => {
+    document.getElementById("productSeached").style.opacity = 0;
+  };
+  const handleFocusInputSearch = () => {
+    document.getElementById("productSeached").style.opacity = 1;
+  };
   return (
     <div
       className={`${styles.navbar} w-100 d-flex align-items-center`}
@@ -28,12 +51,18 @@ export default function Header() {
         <ul
           className={`${styles.menu_navbar} d-flex justify-content-between align-items-center list-unstyled w-100 m-0`}
         >
-          <li className="fw-bolder" style={{ fontSize: 20 }}>
+          <li
+            className="fw-bolder"
+            style={{ fontSize: 20 }}
+            onClick={() => {
+              navigate("/");
+            }}
+          >
             Fluérision Homestay
           </li>
           <li>
-            <Link className={`${styles.navigator}`} to={"/"}>
-              Trang chủ
+            <Link className={`${styles.navigator}`} to={"/rooms"}>
+              Danh sách phòng
             </Link>
           </li>
           <li>
@@ -57,14 +86,85 @@ export default function Header() {
             </Link>
           </li>
           <li>
-            <Link className={`${styles.navigator}`} to={"/"}>
-              Liên hệ
-            </Link>
-          </li>
-          <li>
-            <Link className={`${styles.navigator}`} to={"/"}>
-              Tin tức & sự kiện
-            </Link>
+            <div className={styles.search_box}>
+              <div className="d-flex align-items-center">
+                <button className={`${styles.btn_search}  d-flex`}>
+                  <SearchOutlined style={{ fontSize: 28, color: "#a6a6a6" }} />
+                </button>
+                <input
+                  type="text"
+                  id="input-search"
+                  className={styles.input_search}
+                  placeholder="Tìm kiếm phòng, villa..."
+                  onChange={handleSearchChange}
+                  onBlur={handleBlurInputSearch}
+                  onFocus={handleFocusInputSearch}
+                />
+              </div>
+              <div
+                id="productSeached"
+                style={{
+                  position: "absolute",
+                  top: 50,
+                  backgroundColor: "#555",
+                  zIndex: 100,
+                  width: "100%",
+                }}
+              >
+                {roomSearched &&
+                roomSearched.length > 0 &&
+                searchAndPage.search.trim() !== "" ? (
+                  roomSearched.map((room, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="d-flex justify-content-between align-items-center"
+                        style={{ border: "1px solid", height: 50 }}
+                        onClick={() => {
+                          navigate("/room/" + room.id);
+                        }}
+                      >
+                        <div className="col-2">
+                          <img
+                            className="w-50"
+                            src={room.imgRooms[0].pathImg}
+                            alt="IMG"
+                          />
+                        </div>
+                        <p
+                          className="m-0 h-100 d-flex align-items-center"
+                          style={{ fontSize: 14, fontWeight: 600 }}
+                        >
+                          {room.nameRoom}
+                        </p>
+                        <p
+                          className="m-0 h-100 d-flex align-items-center me-1"
+                          style={{ fontSize: 14, fontWeight: 600 }}
+                        >
+                          {room.price.toLocaleString("it-IT", {
+                            style: "currency",
+                            currency: "VND",
+                          })}
+                        </p>
+                      </div>
+                    );
+                  })
+                ) : roomSearched &&
+                  roomSearched.length === 0 &&
+                  searchAndPage.search.trim() !== "" ? (
+                  <div
+                    style={{ border: "1px solid", height: 50 }}
+                    className="w-100 d-flex justify-content-center align-items-center"
+                  >
+                    <p className="m-0 h-100">
+                      Không tìm thấy sản phẩm "{searchAndPage.search}"
+                    </p>
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </div>
+            </div>
           </li>
           <li>
             {account ? (

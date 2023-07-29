@@ -8,22 +8,20 @@ public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String timeReceive;
+    private int amountRoom;
     private LocalDate dateReceive;
     private LocalDate datePay;
-    private int amountCustomer;
     @OneToOne
     private Room room;
 
     public OrderDetail() {
     }
 
-    public OrderDetail(int id, String timeReceive, LocalDate dateReceive, LocalDate datePay, int amountCustomer, Room room) {
+    public OrderDetail(int id, int amountRoom, LocalDate dateReceive, LocalDate datePay, Room room) {
         this.id = id;
-        this.timeReceive = timeReceive;
+        this.amountRoom = amountRoom;
         this.dateReceive = dateReceive;
         this.datePay = datePay;
-        this.amountCustomer = amountCustomer;
         this.room = room;
     }
 
@@ -33,14 +31,6 @@ public class OrderDetail {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getTimeReceive() {
-        return timeReceive;
-    }
-
-    public void setTimeReceive(String timeReceive) {
-        this.timeReceive = timeReceive;
     }
 
     public LocalDate getDateReceive() {
@@ -59,12 +49,12 @@ public class OrderDetail {
         this.datePay = datePay;
     }
 
-    public int getAmountCustomer() {
-        return amountCustomer;
+    public int getAmountRoom() {
+        return amountRoom;
     }
 
-    public void setAmountCustomer(int amountCustomer) {
-        this.amountCustomer = amountCustomer;
+    public void setAmountRoom(int amountRoom) {
+        this.amountRoom = amountRoom;
     }
 
     public Room getRoom() {

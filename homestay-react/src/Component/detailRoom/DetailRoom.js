@@ -143,7 +143,12 @@ export default function DetailRoom() {
                   })}
                 </div>
                 <div className="d-flex justify-content-start mt-2">
-                  <button className={styles.booking_now}>
+                  <button
+                    className={styles.booking_now}
+                    onClick={() => {
+                      navigate("/booking/" + id);
+                    }}
+                  >
                     Đặt phòng ngay tại đây
                   </button>
                 </div>

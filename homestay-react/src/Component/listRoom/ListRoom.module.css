@@ -1,0 +1,47 @@
+.content {
+  margin-top: 120px;
+  min-height: 500px;
+}
+.card_room {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  padding: 30px;
+}
+.card_room:hover {
+  transform: scale(1.1);
+  background-color: #d2d1d1;
+  filter: brightness(90%);
+  transition: transform 0.2s;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  font-size: 1.2rem;
+  gap: 5px;
+  list-style: none;
+}
+.pagination .page_num {
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-weight: 500;
+  color: #000;
+  text-decoration: none;
+  list-style: none;
+}
+.pagination .active {
+  padding: 4px 0;
+}
+.pagination .active,
+.pagination .page_num:hover {
+  border-radius: 3px;
+  text-decoration: none !important;
+  background-color: #f26b38;
+  color: #fff;
+  list-style: none;
+}
+.a_tag {
+  text-decoration: none;
+  color: #fff;
+}

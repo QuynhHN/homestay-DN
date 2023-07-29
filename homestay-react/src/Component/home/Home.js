@@ -9,12 +9,15 @@ import { getAllListRoom } from "../../service/homeService";
 import Footer from "../common/footer/Footer";
 import { getAllFeedbackInHomePage } from "../../service/feedbackService";
 import Slider from "react-slick";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 export default function Home() {
   const [listRoom, setListRoom] = useState(null);
   const [feedbacks, setFeedbacks] = useState(null);
   const [slickIndex, setSlickIndex] = useState(0);
   const navigate = useNavigate();
+  const useQuery = () => new URLSearchParams(useLocation().search);
+  const query = useQuery();
   const settings = {
     className: "center",
     centerMode: true,
@@ -38,6 +41,16 @@ export default function Home() {
       setFeedbacks(result);
     };
     getFeedBack();
+  }, []);
+  useEffect(() => {
+    const transaction = query.get("transaction_paypal");
+    if (transaction === "success") {
+      setTimeout(() => {
+        toast.success("Đặt phòng thành công, kiểm tra tại lịch sử đặt phòng.");
+        navigate("/");
+        localStorage.removeItem("cart");
+      }, 3000);
+    }
   }, []);
   return (
     <div>
@@ -299,6 +312,7 @@ export default function Home() {
         </div>
       </div>
       <Footer />
+      <ToastContainer />
     </div>
   );
 }

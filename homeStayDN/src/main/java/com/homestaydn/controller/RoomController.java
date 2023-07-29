@@ -20,6 +20,11 @@ public class RoomController {
         Pageable pageable = PageRequest.of(page, 8, Sort.by("nameRoom"));
         return new ResponseEntity<>(roomService.findAllRoom(pageable, search), HttpStatus.OK);
     }
+    @GetMapping("/search")
+    public ResponseEntity<?> findAllRoomBySearchName(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "") String search) {
+        Pageable pageable = PageRequest.of(page, 8, Sort.by("nameRoom"));
+        return new ResponseEntity<>(roomService.findAllRoom(pageable, search), HttpStatus.OK);
+    }
     @GetMapping("/{id}")
     public ResponseEntity<?> findRoomById(@PathVariable int id) {
         return new ResponseEntity<>(roomService.findRoomById(id), HttpStatus.OK);
